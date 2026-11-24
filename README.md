@@ -1,70 +1,93 @@
-# Getting Started with Create React App
+# Lista de Tarefas (React)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Aplicação web de **lista de tarefas** desenvolvida em React, como projeto de estudo
+(curso da Udemy). Permite adicionar, editar e remover tarefas, com os dados
+persistidos no navegador via `localStorage` — ou seja, a lista continua lá mesmo
+após recarregar ou fechar a página.
 
-## Available Scripts
+## Funcionalidades
 
-In the project directory, you can run:
+- ➕ **Adicionar** tarefas pelo campo de texto.
+- ✏️ **Editar** uma tarefa existente (reaproveita o mesmo campo de entrada).
+- ❌ **Remover** tarefas da lista.
+- 🚫 **Evita duplicadas** — não insere uma tarefa já existente.
+- 💾 **Persistência local** — as tarefas são salvas no `localStorage` do navegador.
 
-### `npm start`
+## Tecnologias
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- [React 19](https://react.dev/)
+- [Create React App](https://create-react-app.dev/) (`react-scripts`)
+- [react-icons](https://react-icons.github.io/react-icons/) — ícones da interface
+- [prop-types](https://www.npmjs.com/package/prop-types) — validação de props
+- [ESLint](https://eslint.org/) (flat config, base Airbnb) + [Prettier](https://prettier.io/) — padronização de código
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Pré-requisitos
 
-### `npm test`
+- [Node.js](https://nodejs.org/) (versão LTS recomendada)
+- npm (já incluso no Node.js)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Como executar
 
-### `npm run build`
+```bash
+# 1. Instalar as dependências
+npm install
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# 2. Rodar em modo de desenvolvimento
+npm start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+A aplicação abre em [http://localhost:3000](http://localhost:3000) e recarrega
+automaticamente a cada alteração no código.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Scripts disponíveis
 
-### `npm run eject`
+| Script                 | Descrição                                               |
+| ---------------------- | ------------------------------------------------------- |
+| `npm start`            | Inicia o servidor de desenvolvimento.                   |
+| `npm run build`        | Gera a build de produção otimizada na pasta `build/`.   |
+| `npm test`             | Executa os testes em modo interativo (watch).           |
+| `npm run lint`         | Analisa o código com o ESLint.                          |
+| `npm run lint:fix`     | Analisa e corrige automaticamente o que for possível.   |
+| `npm run format`       | Formata o código com o Prettier.                        |
+| `npm run format:check` | Verifica a formatação sem alterar os arquivos.          |
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+> Existe também `npm run eject`, que expõe toda a configuração do Create React App.
+> É uma operação **irreversível** — use apenas se souber exatamente o que precisa customizar.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Estrutura do projeto
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```
+lista-tarefas-react-udemy/
+├── public/                  # HTML base e assets estáticos
+└── src/
+    ├── index.js             # Ponto de entrada da aplicação React
+    ├── App.js               # Componente raiz (renderiza <Main />)
+    ├── App.css
+    └── components/
+        ├── Main.js          # Estado e lógica das tarefas + persistência
+        ├── Main.css
+        ├── Form/
+        │   ├── index.js     # Campo de texto + botão de adicionar
+        │   └── Form.css
+        └── tarefas/
+            ├── index.js     # Lista de tarefas (editar / excluir)
+            └── Tarefas.css
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Como funciona
 
-## Learn More
+Todo o estado vive no componente de classe `Main` (`src/components/Main.js`):
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- `tarefas` — array com as tarefas atuais.
+- `novaTarefa` — texto do campo de entrada.
+- `index` — índice da tarefa em edição (`-1` quando é uma nova tarefa).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+O fluxo é simples:
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. O `Form` é um componente controlado: cada digitação dispara `handleChange`,
+   que atualiza `novaTarefa`.
+2. Ao enviar, `handleSubmit` adiciona uma nova tarefa **ou** sobrescreve a que
+   está em edição (quando `index !== -1`).
+3. `Tarefas` renderiza a lista; os ícones acionam `handleEdit` e `handleDelete`.
+4. Persistência: `componentDidMount` carrega as tarefas do `localStorage` ao abrir,
+   e `componentDidUpdate` grava sempre que a lista muda.

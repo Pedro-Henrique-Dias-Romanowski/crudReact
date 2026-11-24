@@ -7,8 +7,8 @@ import './Tarefas.css';
 export default function Tarefas({ tarefas, handleEdit, handleDelete }) {
   return (
     <ul className="tarefas">
-      {tarefas.map((tarefa, ix) => (
-        <li key={index}>nde
+      {tarefas.map((tarefa, index) => (
+        <li key={index}>
           {tarefa}
           <div>
             <span className="edit" onClick={(e) => handleEdit(e, index)}>
